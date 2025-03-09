@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Saya-san!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #ff6f91;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background-color: #fff;
+      color: #ff6f91;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    .anime-pic {
+      width: 250px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .side-menu {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      background-color: #ff6f91;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .side-menu h3 {
+      text-align: center;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .friend-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .friend-list li {
+      margin: 10px 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+
+    .friend-list img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .friend-list li:hover {
+      background-color: #fad0c4;
+      padding: 5px;
+      border-radius: 10px;
+    }
+
+    .message-container {
+      margin-left: 300px;
+      width: calc(100% - 300px);
+      padding: 30px;
+      text-align: center;
+    }
+
+    .message-box {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .message-box p {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 2em;
+      color: #333;
+    }
+
+    .countdown {
+      font-size: 2em;
+      color: #ff6f91;
+      margin: 30px 0;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- القائمة الجانبية -->
+  <div class="side-menu">
+    <h3>Friends</h3>
+    <ul class="friend-list">
+      <li onclick="showMessage('manar', 'عيد ميلاد سعيد يا سايا سان! كل عام وانتِ بخير! أتمنى لكِ عامًا مليئًا بالسعادة، النجاح، والمفاجآت الجميلة! 🎂💖 رمضان كريم أيضًا، أتمنى أن يكون هذا الشهر فرصة لتحقيق كل أمنياتك. 🌙❤️ كوني قوية مثل ميكاسا وشجاعة مثل إيرين، لأنكِ تستحقين كل الخير والسعادة في هذا العالم. 💪🔥 أتمنى أن تجعلك هذه السنة الجديدة أقرب إلى أحلامك، وأن تحققي فيها كل ما تطمحين إليه. 🌸🌟 عيد ميلاد سعيد مرة أخرى، يا سايا سان! 🎊🌹 ❤️')">
+        <img src="a.jpg" alt="manar">
+        manar
+      </li>
+      <li onclick="showMessage('maryam', 'عيد ميلاد سعيد! كل عام وانتي بالف خير يا رب! أرجو أن تحقق جميع أحلامك ورغباتك وأن تكوني بصحة وعافية، وأن تري ازدهار سنين حياتك!')">
+        <img src="m.jpg" alt="maryam">
+        maryam
+      </li>
+     
+    </ul>
+  </div>
+
+  <!-- المحتوى الرئيسي -->
+  <div class="message-container">
+    <img class="anime-pic" src="s.jpg" alt="Saya-san anime picture">
+    <h1>Happy Birthday Saya-san! 🎉</h1>
+    <p>أتمنى لكِ يوماً مليئاً بالحب والسعادة 🌸</p>
+
+    <button class="btn" onclick="playMusic()"> 🎶</button>
+
+    <audio id="birthdaySong" src="music.mp3" loop></audio>
+
+    <div id="message-display">
+      <p>Select a friend to read their message.</p>
+    </div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <footer>Enjoy Your Day! 💕</footer>
+  </div>
+
+  <script>
+    const playMusic = () => {
+      const song = document.getElementById('birthdaySong');
+      song.play();
+    };
+
+    // تغيير الرسالة حسب الصديق الذي تم النقر عليه
+    const showMessage = (friendName, message) => {
+      const messageDisplay = document.getElementById('message-display');
+      messageDisplay.innerHTML = `<h2>Message from ${friendName}:</h2><p>${message}</p>`;
+    };
+
+    // العد التنازلي لعيد الميلاد
+    const birthday = new Date("March 10, 2025 00:00:00").getTime();
+
+    const countdown = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = birthday - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "It's your birthday today! 🎉";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
